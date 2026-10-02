@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NOME DA EMPRESA] | Massas italianas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== CORES DA BANDEIRA DA ITÁLIA ===== */
+:root{
+  --verde:#008C45; --verde-escuro:#00632f; --verde-claro:#e6f3eb;
+  --branco:#fafaf7; --vermelho:#CD212A; --vermelho-escuro:#9f1a21;
+  --tinta:#1c2a21; --cinza:#5d6b62; --linha:#d9e2dc;
+  --titulo:'Bodoni Moda',Georgia,serif; --texto:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--texto);color:var(--tinta);background:var(--branco);line-height:1.65}
+h1,h2,h3{font-family:var(--titulo);line-height:1.15}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--verde-escuro);margin-bottom:.6rem}
+h3{font-size:1.3rem}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+.tab{padding:3.5rem 0 4rem}
+.tab[hidden]{display:none}
+.lead{max-width:62ch;color:var(--cinza);margin-bottom:2rem}
+
+/* Marcação dos textos que você vai preencher (procure por "INSERIR") */
+.ph{background:#fff3a3;outline:2px dashed #c79a00;padding:.1rem .35rem;border-radius:3px;color:#5a4500}
+
+/* Botões */
+.btn{border:2px solid transparent;padding:.75rem 1.4rem;border-radius:999px;font-weight:700;transition:transform .15s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-verde{background:var(--verde);color:#fff}.btn-verde:hover{background:var(--verde-escuro)}
+.btn-vermelho{background:var(--vermelho);color:#fff}.btn-vermelho:hover{background:var(--vermelho-escuro)}
+.btn-borda{background:#fff;border-color:var(--tinta);color:var(--tinta)}.btn-borda:hover{background:var(--tinta);color:#fff}
+
+/* ===== CABEÇALHO E GUIAS (abas) ===== */
+header{position:sticky;top:0;z-index:20;background:var(--branco);border-bottom:1px solid var(--linha)}
+header::after{content:"";display:block;height:5px;background:linear-gradient(90deg,var(--verde) 33.3%,#fff 33.3% 66.6%,var(--vermelho) 66.6%);box-shadow:inset 0 -1px 0 var(--linha)}
+.barra{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--titulo);font-weight:800;font-size:1.4rem;color:var(--verde-escuro);background:none;border:0}
+nav{display:flex;gap:.25rem}
+nav button{background:none;border:0;padding:.55rem 1rem;border-radius:8px;font-weight:600;color:var(--tinta);border-bottom:3px solid transparent}
+nav button:hover{background:var(--verde-claro)}
+nav button[aria-current="page"]{border-bottom-color:var(--vermelho);color:var(--verde-escuro)}
+#menuBtn{display:none;background:none;border:2px solid var(--tinta);border-radius:8px;padding:.3rem .7rem;font-size:1.2rem}
+
+/* ===== INÍCIO: herói tricolor ===== */
+.heroi{display:grid;grid-template-columns:1fr 2fr 1fr;min-height:430px}
+.heroi>div{display:flex;flex-direction:column;justify-content:center;padding:2rem}
+.h-verde{background:var(--verde);color:#fff;align-items:center;font-size:5rem}
+.h-branco{background:#fff}
+.h-branco h1{font-size:clamp(2.2rem,5vw,3.6rem);color:var(--tinta);margin-bottom:1rem}
+.h-vermelho{background:var(--vermelho);gap:.75rem}
+.h-vermelho .btn-borda{border-color:#fff;background:transparent;color:#fff}
+.h-vermelho .btn-borda:hover{background:#fff;color:var(--vermelho)}
+.h-vermelho .btn-verde{background:#fff;color:var(--vermelho)}
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;text-align:center}
+.numeros strong{display:block;font-family:var(--titulo);font-size:3rem;color:var(--vermelho)}
+.numeros div{border-top:4px solid var(--verde);padding-top:.75rem}
+
+/* ===== SOBRE: acordeão (HTML puro, sem JavaScript) ===== */
+details{border:1px solid var(--linha);border-left:5px solid var(--verde);background:#fff;border-radius:8px;margin-bottom:.8rem}
+details[open]{border-left-color:var(--vermelho)}
+summary{cursor:pointer;padding:1rem 1.25rem;font-weight:700;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font-size:1.4rem;color:var(--vermelho);line-height:1}
+details[open] summary::after{content:"−"}
+details p{padding:0 1.25rem 1.25rem}
+
+/* ===== PRODUTOS: filtro + cartões + janela (modal) ===== */
+.filtros{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.filtros button{background:#fff;border:2px solid var(--verde);color:var(--verde-escuro);padding:.45rem 1.1rem;border-radius:999px;font-weight:700}
+.filtros button.ativo,.filtros button:hover{background:var(--verde);color:#fff}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem}
+.cartao{background:#fff;border:1px solid var(--linha);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.cartao .ic{background:var(--verde-claro);font-size:3rem;text-align:center;padding:1.2rem}
+.cartao:nth-child(3n) .ic{background:#fde9ea}
+.cartao:nth-child(3n+2) .ic{background:#f1f1ea}
+.cartao div.c{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.cartao small{color:var(--cinza)}
+.cartao button{margin-top:auto}
+dialog{border:0;border-radius:16px;padding:2rem;max-width:440px;width:92%;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);border-top:8px solid var(--verde)}
+dialog::backdrop{background:rgba(28,42,33,.6)}
+dialog .ic{font-size:3.5rem}
+dialog h3{margin:.4rem 0}
+dialog p{margin-bottom:1rem}
+.calc{margin-top:3rem;background:var(--verde-claro);border-radius:16px;padding:1.75rem;display:grid;gap:1rem}
+.calc .campos{display:flex;flex-wrap:wrap;gap:1rem;align-items:end}
+label{display:grid;gap:.3rem;font-weight:600;font-size:.95rem}
+input,select,textarea{font:inherit;padding:.65rem .8rem;border:2px solid var(--linha);border-radius:8px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--verde);outline:none}
+#calcRes{font-weight:700;color:var(--verde-escuro)}
+
+/* ===== PROCESSO: passo a passo ===== */
+.passos{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.passos button{width:44px;height:44px;border-radius:50%;border:2px solid var(--verde);background:#fff;color:var(--verde-escuro);font-weight:800}
+.passos button.feito{background:var(--verde);color:#fff}
+.passos button.atual{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+.barra-prog{height:8px;background:var(--linha);border-radius:99px;overflow:hidden;margin-bottom:1.5rem}
+#prog{height:100%;width:0;background:linear-gradient(90deg,var(--verde),var(--vermelho));transition:width .4s}
+.painel{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:1.75rem;min-height:170px;margin-bottom:1.25rem}
+.painel h3{color:var(--verde-escuro);margin-bottom:.5rem}
+.nav-passos{display:flex;gap:.75rem}
+
+/* ===== CONTATO: formulário com validação ===== */
+.contato{display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem}
+form{display:grid;gap:1rem}
+.erro{color:var(--vermelho);font-size:.85rem;min-height:1.1em}
+.ok{background:var(--verde-claro);border-left:5px solid var(--verde);padding:1rem;border-radius:8px;font-weight:600}
+.ok.falha{background:#fde9ea;border-left-color:var(--vermelho)}
+.info p{margin-bottom:.8rem}
+
+footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem;font-size:.9rem}
+#topo{position:fixed;right:1.2rem;bottom:1.2rem;width:46px;height:46px;border-radius:50%;border:0;background:var(--vermelho);color:#fff;font-size:1.3rem;display:none}
+
+@media(max-width:800px){
+  #menuBtn{display:block}
+  nav{display:none;position:absolute;top:73px;left:0;right:0;background:var(--branco);flex-direction:column;padding:.5rem 1rem 1rem;border-bottom:1px solid var(--linha)}
+  nav.aberto{display:flex}
+  .heroi{grid-template-columns:1fr}.h-verde{font-size:3rem;padding:1rem}.heroi{min-height:0}
+  .numeros,.contato{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap barra">
+    <button class="logo" data-tab="inicio">[INSERIR NOME DA EMPRESA]</button>
+    <button id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav id="menu" aria-label="Principal">
+      <button data-tab="inicio">Início</button>
+      <button data-tab="sobre">Sobre</button>
+      <button data-tab="produtos">Produtos</button>
+      <button data-tab="processo">Processo</button>
+      <button data-tab="contato">Contato</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ================= GUIA: INÍCIO ================= -->
+<section id="inicio" class="tab" style="padding-top:0">
+  <div class="heroi">
+    <div class="h-verde" aria-hidden="true">🌾</div>
+    <div class="h-branco">
+      <h1>Massa italiana de verdade, feita com cuidado.</h1>
+      <p class="lead"><span class="ph">[INSERIR SLOGAN OU FRASE DE APRESENTAÇÃO DA EMPRESA]</span></p>
+    </div>
+    <div class="h-vermelho">
+      <button class="btn btn-verde" data-tab="produtos">Ver produtos</button>
+      <button class="btn btn-borda" data-tab="contato">Fale conosco</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <!-- EDITAR: troque os números em data-alvo (valores de exemplo) -->
+    <div class="numeros">
+      <div><strong class="ph" data-alvo="40">0</strong>anos de história</div>
+      <div><strong class="ph" data-alvo="25">0</strong>tipos de massa</div>
+      <div><strong class="ph" data-alvo="12">0</strong>estados atendidos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUIA: SOBRE ================= -->
+<section id="sobre" class="tab" hidden>
+  <div class="wrap">
+    <h2>Sobre a empresa</h2>
+    <p class="lead"><span class="ph">[INSERIR TEXTO SOBRE A INDÚSTRIA: história, fundação, localização e diferenciais]</span></p>
+    <details open><summary>Missão</summary><p><span class="ph">[INSERIR MISSÃO DA EMPRESA]</span></p></details>
+    <details><summary>Visão</summary><p><span class="ph">[INSERIR VISÃO DA EMPRESA]</span></p></details>
+    <details><summary>Valores</summary><p><span class="ph">[INSERIR VALORES DA EMPRESA]</span></p></details>
+    <details><summary>Qualidade e certificações</summary><p><span class="ph">[INSERIR INFORMAÇÕES SOBRE QUALIDADE, NORMAS E CERTIFICAÇÕES]</span></p></details>
+  </div>
+</section>
+
+<!-- ================= GUIA: PRODUTOS ================= -->
+<section id="produtos" class="tab" hidden>
+  <div class="wrap">
+    <h2>Nossos produtos</h2>
+    <p class="lead"><span class="ph">[INSERIR TEXTO INTRODUTÓRIO SOBRE A LINHA DE PRODUTOS]</span></p>
+    <div class="filtros" id="filtros">
+      <button class="ativo" data-cat="todos">Todos</button>
+      <button data-cat="longa">Massa longa</button>
+      <button data-cat="curta">Massa curta</button>
+      <button data-cat="recheada">Recheada</button>
+    </div>
+    <div class="grade" id="grade"></div>
+
+    <div class="calc">
+      <h3>Calculadora de porções</h3>
+      <div class="campos">
+        <label>Número de pessoas<input type="number" id="pessoas" min="1" max="200" value="4"></label>
+        <label>Tamanho da porção
+          <select id="porcao"><option value="80">Leve (80 g)</option><option value="100" selected>Normal (100 g)</option><option value="130">Reforçada (130 g)</option></select>
+        </label>
+        <button class="btn btn-vermelho" id="calcBtn">Calcular</button>
+      </div>
+      <p id="calcRes" aria-live="polite"></p>
+    </div>
+  </div>
+  <dialog id="modal"><div class="ic" id="mIcone"></div><h3 id="mNome"></h3><p id="mDesc"></p><p id="mTempo"></p><button class="btn btn-verde" id="mFechar">Fechar</button></dialog>
+</section>
+
+<!-- ================= GUIA: PROCESSO ================= -->
+<section id="processo" class="tab" hidden>
+  <div class="wrap">
+    <h2>Do trigo ao pacote</h2>
+    <p class="lead"><span class="ph">[INSERIR TEXTO SOBRE O PROCESSO PRODUTIVO DA EMPRESA]</span> Acompanhe as etapas gerais de fabricação.</p>
+    <div class="passos" id="passos"></div>
+    <div class="barra-prog"><div id="prog"></div></div>
+    <div class="painel" aria-live="polite"><h3 id="pTitulo"></h3><p id="pTexto"></p></div>
+    <div class="nav-passos">
+      <button class="btn btn-borda" id="ant">Etapa anterior</button>
+      <button class="btn btn-verde" id="prox">Próxima etapa</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUIA: CONTATO ================= -->
+<section id="contato" class="tab" hidden>
+  <div class="wrap contato">
+    <div>
+      <h2>Fale conosco</h2>
+      <p class="lead">Envie sua dúvida ou peça um orçamento.</p>
+      <form id="form" novalidate>
+        <label>Nome<input id="nome" autocomplete="name"><span class="erro" id="eNome"></span></label>
+        <label>E-mail<input id="email" type="email" autocomplete="email"><span class="erro" id="eEmail"></span></label>
+        <label>Mensagem<textarea id="msg" rows="4"></textarea><span class="erro" id="eMsg"></span></label>
+        <input type="text" id="site" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true"><!-- anti-spam: deixe oculto -->
+        <button class="btn btn-vermelho" type="submit">Enviar mensagem</button>
+        <div class="ok" id="sucesso" hidden>Mensagem enviada! Responderemos em breve.</div>
+      </form>
+    </div>
+    <div class="info">
+      <h3 style="margin:3rem 0 1rem">Onde estamos</h3>
+      <p><span class="ph">[INSERIR ENDEREÇO]</span></p>
+      <p><span class="ph">[INSERIR TELEFONE]</span></p>
+      <p><span class="ph">[INSERIR E-MAIL]</span></p>
+      <p><span class="ph">[INSERIR HORÁRIO DE ATENDIMENTO]</span></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="ano"></span> <span class="ph">[INSERIR NOME DA EMPRESA]</span>. Todos os direitos reservados.</footer>
+<button id="topo" aria-label="Voltar ao topo">↑</button>
+
+<script>
+/* ========== 1. GUIAS (abas) ========== */
+const secoes = document.querySelectorAll('.tab');
+const menu = document.getElementById('menu');
+
+function mostrarGuia(id){
+  if(!document.getElementById(id)) id = 'inicio';
+  secoes.forEach(s => s.hidden = (s.id !== id));
+  document.querySelectorAll('nav [data-tab]').forEach(b =>
+    b.setAttribute('aria-current', b.dataset.tab === id ? 'page' : 'false'));
+  history.replaceState(null, '', '#' + id);
+  menu.classList.remove('aberto');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+  window.scrollTo({top:0});
+  if(id === 'inicio') animarNumeros();
+}
+document.querySelectorAll('[data-tab]').forEach(b =>
+  b.addEventListener('click', () => mostrarGuia(b.dataset.tab)));
+
+/* Menu no celular */
+document.getElementById('menuBtn').addEventListener('click', e => {
+  const aberto = menu.classList.toggle('aberto');
+  e.currentTarget.setAttribute('aria-expanded', aberto);
+});
+
+/* ========== 2. CONTADORES ANIMADOS ========== */
+function animarNumeros(){
+  document.querySelectorAll('[data-alvo]').forEach(el => {
+    const alvo = +el.dataset.alvo; let n = 0;
+    const passo = Math.max(1, Math.ceil(alvo / 40));
+    const t = setInterval(() => {
+      n = Math.min(alvo, n + passo);
+      el.textContent = n;
+      if(n >= alvo) clearInterval(t);
+    }, 35);
+  });
+}
+
+/* ========== 3. PRODUTOS: lista, filtro e janela de detalhes ========== */
+/* EDITAR: acrescente ou altere produtos nesta lista */
+const produtos = [
+  {nome:'Spaghetti',   cat:'longa',    icone:'🍝', tempo:'9 a 11 min', desc:'A massa longa clássica, ideal para molhos de tomate e azeite.'},
+  {nome:'Fettuccine',  cat:'longa',    icone:'🍜', tempo:'8 a 10 min', desc:'Fitas largas que seguram bem molhos cremosos.'},
+  {nome:'Penne',       cat:'curta',    icone:'🥢', tempo:'10 a 12 min', desc:'Tubinhos com ranhuras que prendem o molho.'},
+  {nome:'Fusilli',     cat:'curta',    icone:'🌀', tempo:'9 a 11 min', desc:'Espiral versátil, ótima para saladas e molhos encorpados.'},
+  {nome:'Farfalle',    cat:'curta',    icone:'🦋', tempo:'10 a 12 min', desc:'Formato de gravatinha, divertido e fácil de servir.'},
+  {nome:'Rigatoni',    cat:'curta',    icone:'🍲', tempo:'12 a 14 min', desc:'Massa encorpada para pratos assados e ragus.'},
+  {nome:'Ravioli',     cat:'recheada', icone:'🥟', tempo:'4 a 6 min', desc:'Massa recheada, pronta em poucos minutos.'},
+  {nome:'Tortellini',  cat:'recheada', icone:'🧀', tempo:'3 a 5 min', desc:'Pequenos anéis recheados, servidos com molho ou caldo.'}
+];
+const grade = document.getElementById('grade');
+const nomesCat = {longa:'Massa longa', curta:'Massa curta', recheada:'Recheada'};
+
+function desenharProdutos(cat = 'todos'){
+  grade.innerHTML = '';
+  produtos.filter(p => cat === 'todos' || p.cat === cat).forEach(p => {
+    const c = document.createElement('article');
+    c.className = 'cartao';
+    c.innerHTML = `<div class="ic">${p.icone}</div>
+      <div class="c"><h3>${p.nome}</h3><small>${nomesCat[p.cat]}</small>
+      <button class="btn btn-verde">Ver detalhes</button></div>`;
+    c.querySelector('button').addEventListener('click', () => abrirModal(p));
+    grade.appendChild(c);
+  });
+}
+document.getElementById('filtros').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#filtros button').forEach(x => x.classList.remove('ativo'));
+  b.classList.add('ativo');
+  desenharProdutos(b.dataset.cat);
+});
+
+const modal = document.getElementById('modal');
+function abrirModal(p){
+  document.getElementById('mIcone').textContent = p.icone;
+  document.getElementById('mNome').textContent = p.nome;
+  document.getElementById('mDesc').textContent = p.desc;
+  document.getElementById('mTempo').textContent = 'Cozimento: ' + p.tempo;
+  modal.showModal();
+}
+document.getElementById('mFechar').addEventListener('click', () => modal.close());
+modal.addEventListener('click', e => { if(e.target === modal) modal.close(); });
+
+/* Calculadora de porções */
+document.getElementById('calcBtn').addEventListener('click', () => {
+  const pessoas = parseInt(document.getElementById('pessoas').value, 10);
+  const porcao = +document.getElementById('porcao').value;
+  const res = document.getElementById('calcRes');
+  if(!pessoas || pessoas < 1){ res.textContent = 'Informe um número de pessoas válido.'; return; }
+  const g = pessoas * porcao;
+  const agua = g / 100;          /* 1 litro de água para cada 100 g */
+  const sal = agua * 10;         /* 10 g de sal por litro */
+  res.textContent = `Use ${g} g de massa, ${agua.toFixed(1)} L de água e ${sal.toFixed(0)} g de sal.`;
+});
+
+/* ========== 4. PROCESSO: passo a passo ========== */
+const etapas = [
+  {t:'Seleção do trigo',       d:'Os grãos de trigo duro são inspecionados e escolhidos pela qualidade e pelo teor de proteína.'},
+  {t:'Moagem da sêmola',       d:'O trigo é limpo e moído até virar sêmola, a base de uma boa massa.'},
+  {t:'Mistura e amassamento',  d:'A sêmola é misturada com água até formar uma massa homogênea.'},
+  {t:'Modelagem',              d:'A massa passa por moldes que definem o formato: longa, curta ou recheada.'},
+  {t:'Secagem',                d:'A massa perde umidade de forma controlada, o que garante sabor, textura e conservação.'},
+  {t:'Embalagem e expedição',  d:'O produto é pesado, embalado, conferido pela qualidade e enviado ao cliente.'}
+];
+let atual = 0;
+const boxPassos = document.getElementById('passos');
+etapas.forEach((_, i) => {
+  const b = document.createElement('button');
+  b.textContent = i + 1;
+  b.setAttribute('aria-label', 'Etapa ' + (i + 1));
+  b.addEventListener('click', () => irEtapa(i));
+  boxPassos.appendChild(b);
+});
+function irEtapa(i){
+  atual = Math.max(0, Math.min(etapas.length - 1, i));
+  document.getElementById('pTitulo').textContent = etapas[atual].t;
+  document.getElementById('pTexto').textContent = etapas[atual].d;
+  document.getElementById('prog').style.width = ((atual + 1) / etapas.length * 100) + '%';
+  boxPassos.querySelectorAll('button').forEach((b, k) => {
+    b.className = k < atual ? 'feito' : k === atual ? 'atual' : '';
+  });
+  document.getElementById('ant').disabled = atual === 0;
+  document.getElementById('prox').disabled = atual === etapas.length - 1;
+}
+document.getElementById('ant').addEventListener('click', () => irEtapa(atual - 1));
+document.getElementById('prox').addEventListener('click', () => irEtapa(atual + 1));
+
+/* ========== 5. FORMULÁRIO COM VALIDAÇÃO + ENVIO PARA O SEU E-MAIL ========== */
+/* EDITAR: coloque aqui o e-mail que vai RECEBER as mensagens */
+const EMAIL_DESTINO = 'SEU-EMAIL@exemplo.com';
+
+document.getElementById('form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const msg = document.getElementById('msg').value.trim();
+  const eNome = nome.length < 3 ? 'Digite seu nome completo.' : '';
+  const eEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? '' : 'Digite um e-mail válido.';
+  const eMsg = msg.length < 10 ? 'Escreva pelo menos 10 caracteres.' : '';
+  document.getElementById('eNome').textContent = eNome;
+  document.getElementById('eEmail').textContent = eEmail;
+  document.getElementById('eMsg').textContent = eMsg;
+  const aviso = document.getElementById('sucesso');
+  aviso.hidden = true; aviso.classList.remove('falha');
+  if(eNome || eEmail || eMsg) return;                   /* há erro: para aqui */
+  if(document.getElementById('site').value) return;     /* anti-spam: robô preencheu */
+
+  const botao = e.target.querySelector('button[type="submit"]');
+  botao.disabled = true; botao.textContent = 'Enviando...';
+  try{
+    const r = await fetch('https://formsubmit.co/ajax/' + EMAIL_DESTINO, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        name: nome, email: email, message: msg,
+        _subject: 'Nova mensagem do site: ' + nome,
+        _template: 'table', _captcha: 'false'
+      })
+    });
+    const dados = await r.json();
+    if(!r.ok || dados.success === 'false') throw new Error(dados.message || 'Erro desconhecido');
+    aviso.textContent = 'Mensagem enviada! Responderemos em breve.';
+    e.target.reset();
+  }catch(err){
+    console.error('Erro no envio:', err);   /* veja também em F12 > Console */
+    let motivo = err.message;
+    if(EMAIL_DESTINO.includes('SEU-EMAIL')) motivo = 'o e-mail de destino ainda não foi trocado no código.';
+    else if(motivo === 'Failed to fetch') motivo = 'o navegador bloqueou o envio. Abra o site por um servidor (Live Server, Netlify ou GitHub Pages) e não pelo arquivo direto.';
+    aviso.textContent = 'Não foi possível enviar: ' + motivo;
+    aviso.classList.add('falha');
+  }finally{
+    aviso.hidden = false;
+    botao.disabled = false; botao.textContent = 'Enviar mensagem';
+  }
+});
+
+/* ========== 6. BOTÃO VOLTAR AO TOPO + ANO ========== */
+const topo = document.getElementById('topo');
+window.addEventListener('scroll', () => topo.style.display = window.scrollY > 400 ? 'block' : 'none');
+topo.addEventListener('click', () => window.scrollTo({top:0}));
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+/* ========== INICIAR ========== */
+desenharProdutos();
+irEtapa(0);
+mostrarGuia(location.hash.slice(1) || 'inicio');
+</script>
+</body>
+</html>
