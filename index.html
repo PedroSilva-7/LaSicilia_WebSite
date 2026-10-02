@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[NOME DA EMPRESA] | Massas italianas</title>
+<title>LA SICÍLIA | Massas italianas</title>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ===== CORES DA BANDEIRA DA ITÁLIA ===== */
@@ -58,8 +58,12 @@ nav button[aria-current="page"]{border-bottom-color:var(--vermelho);color:var(--
 .h-vermelho .btn-borda:hover{background:#fff;color:var(--vermelho)}
 .h-vermelho .btn-verde{background:#fff;color:var(--vermelho)}
 .numeros{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;text-align:center}
-.numeros strong{display:block;font-family:var(--titulo);font-size:3rem;color:var(--vermelho)}
-.numeros div{border-top:4px solid var(--verde);padding-top:.75rem}
+.numeros strong{display:block;font-family:var(--titulo);font-size:3rem;color:preto}
+.numeros div::before{content:"";display:block;height:5px;margin-bottom:.75rem;
+  box-shadow:inset 0 1px 0 var(--linha),inset 0 -1px 0 var(--linha)}
+.numeros div:nth-child(1)::before{background:var(--verde)}
+.numeros div:nth-child(2)::before{background:#fff}
+.numeros div:nth-child(3)::before{background:var(--vermelho)}
 
 /* ===== SOBRE: acordeão (HTML puro, sem JavaScript) ===== */
 details{border:1px solid var(--linha);border-left:5px solid var(--verde);background:#fff;border-radius:8px;margin-bottom:.8rem}
@@ -129,7 +133,7 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 
 <header>
   <div class="wrap barra">
-    <button class="logo" data-tab="inicio">[INSERIR NOME DA EMPRESA]</button>
+    <button class="logo" data-tab="inicio">LA SICÍLIA</button>
     <button id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
     <nav id="menu" aria-label="Principal">
       <button data-tab="inicio">Início</button>
@@ -145,10 +149,10 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <!-- ================= GUIA: INÍCIO ================= -->
 <section id="inicio" class="tab" style="padding-top:0">
   <div class="heroi">
-    <div class="h-verde" aria-hidden="true">🌾</div>
+    <div class="h-verde" aria-hidden="true"><img src="https://assets.wprock.fr/emoji/joypixels/512/1f33e.png" width="130px" height="130px"></div>
     <div class="h-branco">
       <h1>Massa italiana de verdade, feita com cuidado.</h1>
-      <p class="lead"><span class="ph">[INSERIR SLOGAN OU FRASE DE APRESENTAÇÃO DA EMPRESA]</span></p>
+      <p class="lead"><span>Sabor da tradição Italiana</span></p>
     </div>
     <div class="h-vermelho">
       <button class="btn btn-verde" data-tab="produtos">Ver produtos</button>
@@ -158,9 +162,9 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
   <div class="wrap">
     <!-- EDITAR: troque os números em data-alvo (valores de exemplo) -->
     <div class="numeros">
-      <div><strong class="ph" data-alvo="40">0</strong>anos de história</div>
-      <div><strong class="ph" data-alvo="25">0</strong>tipos de massa</div>
-      <div><strong class="ph" data-alvo="12">0</strong>estados atendidos</div>
+	  <div><strong  data-alvo="15">0</strong>Tipos de massa</div>
+      <div><strong  data-alvo="295">0</strong>Municípios atendidos</div>
+      <div><strong  data-alvo="2001">0</strong>Ativos desde...</div>
     </div>
   </div>
 </section>
@@ -169,11 +173,11 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <section id="sobre" class="tab" hidden>
   <div class="wrap">
     <h2>Sobre a empresa</h2>
-    <p class="lead"><span class="ph">[INSERIR TEXTO SOBRE A INDÚSTRIA: história, fundação, localização e diferenciais]</span></p>
-    <details open><summary>Missão</summary><p><span class="ph">[INSERIR MISSÃO DA EMPRESA]</span></p></details>
-    <details><summary>Visão</summary><p><span class="ph">[INSERIR VISÃO DA EMPRESA]</span></p></details>
-    <details><summary>Valores</summary><p><span class="ph">[INSERIR VALORES DA EMPRESA]</span></p></details>
-    <details><summary>Qualidade e certificações</summary><p><span class="ph">[INSERIR INFORMAÇÕES SOBRE QUALIDADE, NORMAS E CERTIFICAÇÕES]</span></p></details>
+    <p class="lead"><span >[INSERIR TEXTO SOBRE A INDÚSTRIA: história, fundação, localização e diferenciais]</span></p>
+    <details open name="sobre"><summary>Missão</summary><p><span >Produzir macarrão caseiro de alta qualidade, com sabor, tradição e ingredientes selecionados, proporcionando refeições saborosas e momentos especiais aos nossos clientes.</span></p></details>
+    <details name="sobre"><summary>Visão</summary><p><span >Ser reconhecida como uma empresa referência em macarrão caseiro, destacando-se pela qualidade dos produtos, conquistando clientes e levando nossa presença no mercado.</span></p></details>
+    <details name="sobre"><summary>Valores</summary><p><span >Qualidade e cuidado na produção;<br>Uso de ingredientes selecionados;<br>Tradição e sabor caseiro;<br>Respeito e satisfação dos clientes;<br>Higiene e responsabilidade;<br>Honestidade e compromisso;<br>Valorização da cultura e da culinária italiana.</span></p></details>
+    <details name="sobre"><summary>Qualidade e certificações</summary><p><span >[INSERIR INFORMAÇÕES SOBRE QUALIDADE, NORMAS E CERTIFICAÇÕES]</span></p></details>
   </div>
 </section>
 
@@ -181,7 +185,7 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <section id="produtos" class="tab" hidden>
   <div class="wrap">
     <h2>Nossos produtos</h2>
-    <p class="lead"><span class="ph">[INSERIR TEXTO INTRODUTÓRIO SOBRE A LINHA DE PRODUTOS]</span></p>
+    <p class="lead"><span >[INSERIR TEXTO INTRODUTÓRIO SOBRE A LINHA DE PRODUTOS]</span></p>
     <div class="filtros" id="filtros">
       <button class="ativo" data-cat="todos">Todos</button>
       <button data-cat="longa">Massa longa</button>
@@ -193,10 +197,8 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
     <div class="calc">
       <h3>Calculadora de porções</h3>
       <div class="campos">
-        <label>Número de pessoas<input type="number" id="pessoas" min="1" max="200" value="4"></label>
-        <label>Tamanho da porção
-          <select id="porcao"><option value="80">Leve (80 g)</option><option value="100" selected>Normal (100 g)</option><option value="130">Reforçada (130 g)</option></select>
-        </label>
+        <label>Número de pessoas<input type="number" id="pessoas" min="0" max="200" value="1"></label>
+        <label>'Tamanho da porção (g)'<input type="number" id="porcao" min="0" max="100000" step="10" value="80"></label>
         <button class="btn btn-vermelho" id="calcBtn">Calcular</button>
       </div>
       <p id="calcRes" aria-live="polite"></p>
@@ -209,7 +211,7 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <section id="processo" class="tab" hidden>
   <div class="wrap">
     <h2>Do trigo ao pacote</h2>
-    <p class="lead"><span class="ph">[INSERIR TEXTO SOBRE O PROCESSO PRODUTIVO DA EMPRESA]</span> Acompanhe as etapas gerais de fabricação.</p>
+    <p class="lead"><span >[INSERIR TEXTO SOBRE O PROCESSO PRODUTIVO DA EMPRESA]</span> Acompanhe as etapas gerais de fabricação.</p>
     <div class="passos" id="passos"></div>
     <div class="barra-prog"><div id="prog"></div></div>
     <div class="painel" aria-live="polite"><h3 id="pTitulo"></h3><p id="pTexto"></p></div>
@@ -237,16 +239,17 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
     </div>
     <div class="info">
       <h3 style="margin:3rem 0 1rem">Onde estamos</h3>
-      <p><span class="ph">[INSERIR ENDEREÇO]</span></p>
-      <p><span class="ph">[INSERIR TELEFONE]</span></p>
-      <p><span class="ph">[INSERIR E-MAIL]</span></p>
-      <p><span class="ph">[INSERIR HORÁRIO DE ATENDIMENTO]</span></p>
+      <p><span >[INSERIR ENDEREÇO]</span></p>
+      <p><span >[INSERIR TELEFONE]</span></p>
+      <p><span >[INSERIR E-MAIL]</span></p>
+	  <p><span >[INSERIR INSTAGRAM]</span></p>
+      <p><span >[INSERIR HORÁRIO DE ATENDIMENTO]</span></p>
     </div>
   </div>
 </section>
 </main>
 
-<footer>© <span id="ano"></span> <span class="ph">[INSERIR NOME DA EMPRESA]</span>. Todos os direitos reservados.</footer>
+<footer>© <span id="ano"></span> <span >LA SICÍLIA</span>. Todos os direitos reservados.</footer>
 <button id="topo" aria-label="Voltar ao topo">↑</button>
 
 <script>
