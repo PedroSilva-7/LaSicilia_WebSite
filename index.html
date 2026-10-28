@@ -165,7 +165,7 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
     <div class="numeros">
 	  <div><strong  data-alvo="15">0</strong>Tipos de massa</div>
       <div><strong  data-alvo="295">0</strong>Municípios atendidos</div>
-      <div><strong  data-alvo="2001">0</strong>Ativos desde...</div>
+      <div><strong  data-alvo="1991">0</strong>Ativos desde...</div>
     </div>
   </div>
 </section>
@@ -174,11 +174,11 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <section id="sobre" class="tab" hidden>
   <div class="wrap">
     <h2>Sobre a empresa</h2>
-    <p class="lead"><span >[INSERIR TEXTO SOBRE A INDÚSTRIA: história, fundação, localização e diferenciais]</span></p>
+    <p class="lead"><span >Nascida no coração da Sicília, na Itália, a La Sicilia carrega gerações de tradição, paixão e amor pela culinária italiana. O que começou como uma produção familiar de massas artesanais transformou-se em uma marca que une receitas tradicionais, ingredientes selecionados e inovação.
+Cada produto celebra as raízes da gastronomia siciliana, levando à mesa sabores autênticos e momentos especiais para compartilhar.</span></p>
     <details open name="sobre"><summary>Missão</summary><p><span >Produzir macarrão caseiro de alta qualidade, com sabor, tradição e ingredientes selecionados, proporcionando refeições saborosas e momentos especiais aos nossos clientes.</span></p></details>
     <details name="sobre"><summary>Visão</summary><p><span >Ser reconhecida como uma empresa referência em macarrão caseiro, destacando-se pela qualidade dos produtos, conquistando clientes e levando nossa presença no mercado.</span></p></details>
     <details name="sobre"><summary>Valores</summary><p><span >Qualidade e cuidado na produção;<br>Uso de ingredientes selecionados;<br>Tradição e sabor caseiro;<br>Respeito e satisfação dos clientes;<br>Higiene e responsabilidade;<br>Honestidade e compromisso;<br>Valorização da cultura e da culinária italiana.</span></p></details>
-    <details name="sobre"><summary>Qualidade e certificações</summary><p><span >[INSERIR INFORMAÇÕES SOBRE QUALIDADE, NORMAS E CERTIFICAÇÕES]</span></p></details>
   </div>
 </section>
 
@@ -186,7 +186,7 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <section id="produtos" class="tab" hidden>
   <div class="wrap">
     <h2>Nossos produtos</h2>
-    <p class="lead"><span >[INSERIR TEXTO INTRODUTÓRIO SOBRE A LINHA DE PRODUTOS]</span></p>
+    <p class="lead"><span >Massas leves, nutritivas e cheias de sabor, pensadas para quem não abre mão da qualidade no dia a dia. Escolha a sua favorita!</span></p>
     <div class="filtros" id="filtros">
       <button class="ativo" data-cat="todos">Todos</button>
       <button data-cat="longa">Massa longa</button>
@@ -212,7 +212,7 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
 <section id="processo" class="tab" hidden>
   <div class="wrap">
     <h2>Do trigo ao pacote</h2>
-    <p class="lead"><span >[INSERIR TEXTO SOBRE O PROCESSO PRODUTIVO DA EMPRESA]</span> Acompanhe as etapas gerais de fabricação.</p>
+    <p class="lead">Acreditamos que uma boa massa começa na origem. Por isso, acompanhamos de perto todo o desenvolvimento do nosso produto.</p>
     <div class="passos" id="passos"></div>
     <div class="barra-prog"><div id="prog"></div></div>
     <div class="painel" aria-live="polite"><h3 id="pTitulo"></h3><p id="pTexto"></p></div>
@@ -240,11 +240,10 @@ footer{background:var(--tinta);color:#cfd8d2;text-align:center;padding:2rem 1rem
     </div>
     <div class="info">
       <h3 style="margin:3rem 0 1rem">Onde estamos</h3>
-      <p><span >[INSERIR ENDEREÇO]</span></p>
-      <p><span >[INSERIR TELEFONE]</span></p>
-      <p><span >[INSERIR E-MAIL]</span></p>
-	  <p><span >[INSERIR INSTAGRAM]</span></p>
-      <p><span >[INSERIR HORÁRIO DE ATENDIMENTO]</span></p>
+      <p><span >Rua Duque de Caxias, nº 830,<br>Centro, Timbó – SC, CEP 89120-000</span></p>
+      <p><span >(47) xxxx-xxxx</span></p>
+      <p><span >lasiciliamassas@gmail.com</span></p>
+	  <p><span >@lasiciliamassas</span></p>
     </div>
   </div>
 </section>
@@ -350,12 +349,12 @@ document.getElementById('calcBtn').addEventListener('click', () => {
 
 /* ========== 4. PROCESSO: passo a passo ========== */
 const etapas = [
-  {t:'Seleção do trigo',       d:'Os grãos de trigo duro são inspecionados e escolhidos pela qualidade e pelo teor de proteína.'},
-  {t:'Moagem da sêmola',       d:'O trigo é limpo e moído até virar sêmola, a base de uma boa massa.'},
-  {t:'Mistura e amassamento',  d:'A sêmola é misturada com água até formar uma massa homogênea.'},
-  {t:'Modelagem',              d:'A massa passa por moldes que definem o formato: longa, curta ou recheada.'},
-  {t:'Secagem',                d:'A massa perde umidade de forma controlada, o que garante sabor, textura e conservação.'},
-  {t:'Embalagem e expedição',  d:'O produto é pesado, embalado, conferido pela qualidade e enviado ao cliente.'}
+  {t:'Seleção do trigo',       			d:'Os grãos de trigo duro são inspecionados e escolhidos pela qualidade e pelo teor de proteína.'},
+  {t:'Moagem da sêmola',       			d:'O trigo é limpo e moído até virar sêmola, a base de uma boa massa.'},
+  {t:'Mistura, amassamento e química',  d:'A sêmola é misturada com água até formar uma massa homogênea, além da saborização e coloração de forma natural.'},
+  {t:'Modelagem',              			d:'A massa passa por moldes que definem o formato: longa, curta e recheada.'},
+  {t:'Secagem',                			d:'A massa perde umidade de forma controlada, o que garante sabor, textura e conservação.'},
+  {t:'Embalagem e expedição',  			d:'O produto é pesado, embalado, conferido pela qualidade e enviado ao cliente.'}
 ];
 let atual = 0;
 const boxPassos = document.getElementById('passos');
